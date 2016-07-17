@@ -1,0 +1,8 @@
+/.mvn
+/.idea
+# Created by .ignore support plugin (hsz.mobi)
+/target/
+/mvnw
+/mvnw.cmd
+/.idea/
+/jasper_test.iml
