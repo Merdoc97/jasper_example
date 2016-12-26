@@ -15,6 +15,10 @@ public interface JasperService {
 
     ModelAndView getReport(String reportBeanName, JRBeanCollectionDataSource data);
 
+
     ModelAndView getReportByQuery(String reportBeanName);
+
     byte[] getAsFile(String reportJrxmlName) throws IOException, JRException, SQLException;
+
+    byte[] getAsFileWithoutQuery(String reportJrxmlName, JRBeanCollectionDataSource data) throws IOException, JRException, SQLException;
 }

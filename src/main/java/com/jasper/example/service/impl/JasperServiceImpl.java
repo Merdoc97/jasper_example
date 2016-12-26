@@ -8,7 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.sql.DataSource;
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,8 +20,9 @@ import java.util.Map;
  */
 @Service
 public class JasperServiceImpl implements JasperService {
+
     @Autowired
-    DataSource dataSource;
+    private DataSource dataSource;
 
     @Override
     public ModelAndView getReport(String reportBeanName, JRBeanCollectionDataSource data) {
@@ -46,10 +48,23 @@ public class JasperServiceImpl implements JasperService {
         JasperReport report = JasperCompileManager.compileReport(template);
         // fill out the report into a print object, ready for export.
         HashMap<String, Object> map = new HashMap<>();
-        JasperPrint print = JasperFillManager.fillReport(report, map,dataSource.getConnection());
+        JasperPrint print = JasperFillManager.fillReport(report, map, dataSource.getConnection());
         //return bytes from report
         return JasperExportManager.exportReportToPdf(print);
     }
 
+    @Override
+    public byte[] getAsFileWithoutQuery(String reportJrxmlName, JRBeanCollectionDataSource data) throws IOException, JRException, SQLException {
 
+        // get the JRXML template as a stream
+        InputStream template = getClass()
+                .getResourceAsStream("/reportview/" + reportJrxmlName + ".jrxml");
+        // compile the report from the stream
+        JasperReport report = JasperCompileManager.compileReport(template);
+        // fill out the report into a print object, ready for export.
+        Map<String, Object> map = new HashMap<>();
+        JasperPrint print = JasperFillManager.fillReport(report, map, data);
+        //return bytes from report
+        return JasperExportManager.exportReportToPdf(print);
+    }
 }
