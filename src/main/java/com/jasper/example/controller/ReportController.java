@@ -1,9 +1,8 @@
 package com.jasper.example.controller;
 
-import com.jasper.example.model.Users;
 import com.jasper.example.service.impl.AbstractService;
 import com.jasper.example.service.interfaces.JasperService;
-import net.sf.jasperreports.engine.JRDataSource;
+import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.apache.poi.util.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.util.*;
+import java.sql.SQLException;
 
 /**
  *
@@ -55,6 +52,14 @@ public class ReportController {
         return jasperService.getReportByQuery("userPdfQuery");
     }
 
+    @RequestMapping(value = "/report/pdf/users/asfile",method = RequestMethod.GET)
+    public ResponseEntity<byte[]> getUsersByQueryAsFile() throws IOException, JRException, SQLException {
+        final HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.valueOf("application/pdf"));
+        headers.setContentDispositionFormData("test.pdf", "test.pdf");
+        return new ResponseEntity<>(jasperService.getAsFile("withoutJpa"),headers,HttpStatus.OK);
+    }
+
     @RequestMapping(value = "/image.png",method = RequestMethod.GET)
     public ResponseEntity<byte[]> getImageView() throws IOException {
         InputStream io=Thread.currentThread().getContextClassLoader().getResourceAsStream("/images/noname.png");
@@ -69,4 +74,6 @@ public class ReportController {
         headers.setContentType(MediaType.valueOf("application/pdf"));
         return new ResponseEntity<>(IOUtils.toByteArray(io), headers, HttpStatus.FOUND);
     }
+
+
 }

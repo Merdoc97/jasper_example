@@ -9,12 +9,12 @@
 	<style name="Detail" fontName="Arial" fontSize="12"/>
 	<queryString>
 		<![CDATA[SELECT
-     users.`USER_ID` AS users_USER_ID,
-     users.`USER_FIRST_NAME` AS users_USER_FIRST_NAME,
-     users.`USER_NAME` AS users_USER_NAME,
-     users.`USER_EMAIL` AS users_USER_EMAIL
+     users.USER_ID AS users_USER_ID,
+     users.USER_FIRST_NAME AS users_USER_FIRST_NAME,
+     users.USER_NAME AS users_USER_NAME,
+     users.USER_EMAIL AS users_USER_EMAIL
 FROM
-     `users` users]]>
+     users users]]>
 	</queryString>
 	<field name="users_USER_NAME" class="java.lang.String"/>
 	<field name="users_USER_FIRST_NAME" class="java.lang.String"/>

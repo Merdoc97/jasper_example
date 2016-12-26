@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report2" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="8c9c668c-d3bf-40d0-a06b-4d7ffe231afd">
-	<property name="ireport.background.image" value="C:\Users\artomov.ihor\Desktop\Безымянный.png"/>
+	<property name="ireport.background.image" value="/media/igor/f2cd5c08-841a-45d4-9718-d16aa297efb5/work/jasper/example1/jasper_example/src/main/webapp/noname.png"/>
 	<property name="ireport.background.image.properties" value="true,true,0.25,65,-6,0,0,467,467"/>
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
